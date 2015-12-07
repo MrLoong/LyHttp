@@ -17,6 +17,7 @@
 		FC799C501C0C46E0002D3679 /* LyHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC799C4F1C0C46E0002D3679 /* LyHttpTests.m */; };
 		FC799C5B1C0C46E0002D3679 /* LyHttpUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC799C5A1C0C46E0002D3679 /* LyHttpUITests.m */; };
 		FCAA3C6B1C0D9FA2003F2ACB /* LyNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA3C6A1C0D9FA2003F2ACB /* LyNetWork.m */; };
+		FCDEB6E31C1284FA00E926B1 /* LYHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDEB6E21C1284FA00E926B1 /* LYHTTPRequestOperationManager.m */; };
 		FCFB3BA01C0FDD2B00537285 /* LYURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFB3B9F1C0FDD2B00537285 /* LYURLRequestSerialization.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		FC799C5C1C0C46E0002D3679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCAA3C691C0D9FA2003F2ACB /* LyNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyNetWork.h; sourceTree = "<group>"; };
 		FCAA3C6A1C0D9FA2003F2ACB /* LyNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyNetWork.m; sourceTree = "<group>"; };
+		FCDEB6E11C1284FA00E926B1 /* LYHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYHTTPRequestOperationManager.h; path = NSURLConnection/LYHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		FCDEB6E21C1284FA00E926B1 /* LYHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYHTTPRequestOperationManager.m; path = NSURLConnection/LYHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		FCFB3B9E1C0FDD2B00537285 /* LYURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYURLRequestSerialization.h; path = LySerialization/LYURLRequestSerialization.h; sourceTree = "<group>"; };
 		FCFB3B9F1C0FDD2B00537285 /* LYURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYURLRequestSerialization.m; path = LySerialization/LYURLRequestSerialization.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +112,7 @@
 		FC799C311C0C46DF002D3679 /* LyHttp */ = {
 			isa = PBXGroup;
 			children = (
+				FCDEB6E01C12848900E926B1 /* NSURLConnection */,
 				FCFB3B9D1C0FDCC400537285 /* LySerialization */,
 				FCFB3B9B1C0FD8E900537285 /* NetWork */,
 				FC799C351C0C46DF002D3679 /* AppDelegate.h */,
@@ -149,6 +153,15 @@
 				FC799C5C1C0C46E0002D3679 /* Info.plist */,
 			);
 			path = LyHttpUITests;
+			sourceTree = "<group>";
+		};
+		FCDEB6E01C12848900E926B1 /* NSURLConnection */ = {
+			isa = PBXGroup;
+			children = (
+				FCDEB6E11C1284FA00E926B1 /* LYHTTPRequestOperationManager.h */,
+				FCDEB6E21C1284FA00E926B1 /* LYHTTPRequestOperationManager.m */,
+			);
+			name = NSURLConnection;
 			sourceTree = "<group>";
 		};
 		FCFB3B9B1C0FD8E900537285 /* NetWork */ = {
@@ -303,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC799C401C0C46E0002D3679 /* LyHttp.xcdatamodeld in Sources */,
+				FCDEB6E31C1284FA00E926B1 /* LYHTTPRequestOperationManager.m in Sources */,
 				FC799C3A1C0C46DF002D3679 /* ViewController.m in Sources */,
 				FC799C371C0C46DF002D3679 /* AppDelegate.m in Sources */,
 				FC799C341C0C46DF002D3679 /* main.m in Sources */,

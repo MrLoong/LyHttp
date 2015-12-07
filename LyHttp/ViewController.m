@@ -17,31 +17,74 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
 }
 
 - (IBAction)test:(id)sender {
+    NSString *postURL = @"http://cityuit.sinaapp.com/p.php";
+    NSString *getURL= @"http://cityuit.sinaapp.com/1.php";
     
-    NSString *URL = @"http://cityuit.sinaapp.com/p.php";
-    id parmenters = @{
+    id parmentersPost = @{
                       @"username":@"1",
-                      @"password":@"222"
+                      @"password":@"1"
                       };
+    id parmentersGet = @{
+                      @"value":@"Lastday",
+                          };
+
+    
+    
+    [LyNetWork requestWithMethod:@"POST"
+                             URL:@"http://cityuit.sinaapp.com/1.php?value=Lastday"
+                         success:^(NSData *data,NSURLResponse *response){
+                             NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                             NSLog(@"requestWithMethod = %@",string);
+                         }
+                         failure:^(NSError *error){
+                             NSLog(@"====%@",error);
+                         }];
+    
+    
+    [LyNetWork requestPostWithURL:postURL
+                       parameters:parmentersPost
+                          success:^(NSData *data,NSURLResponse *response){
+                              NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                              NSLog(@"requestPostWithURL(带参数) = %@",string);
+                          }
+                          failure:^(NSError *error){
+                              
+                          }];
+    [LyNetWork requestPostWithURL:postURL
+                          success:^(NSData *data,NSURLResponse *response){
+                              NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                              NSLog(@"requestPostWithURL(不带参数) = %@",string);
+                          }
+                          failure:^(NSError *error){
+                              
+                          }];
+    
+    [LyNetWork requestGetWithURL:getURL
+                       parameters:parmentersGet
+                          success:^(NSData *data,NSURLResponse *response){
+                              NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                              NSLog(@"requestGetWithURL(带参数) = %@",string);
+                          }
+                          failure:^(NSError *error){
+                              
+                          }];
+    
+    [LyNetWork requestGetWithURL:getURL
+                          success:^(NSData *data,NSURLResponse *response){
+                              NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                              NSLog(@"requestGetWithURL(不带参数) = %@",string);
+                          }
+                          failure:^(NSError *error){
+                              
+                          }];
+    
     
 
-    [LyNetWork requestMethod:@"POST"
-                         URL:URL
-                  parameters:parmenters
-                     success:^(NSData *data,NSURLResponse *response){
-                         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                         NSLog(@"%@",string);
-                     }
-                     failure:^(NSError *error){
-                         NSLog(@"%@",error);
-                     }];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -8,54 +8,82 @@
 
 #import "LyNetWork.h"
 #import "LYURLRequestSerialization.h"
+#import "LYHTTPRequestOperationManager.h"
 
 
 @interface LyNetWork()
+
 
 
 @end
 
 @implementation LyNetWork
 
-+(void)requestMethod:(NSString *)method
+
+//+(void)requestMethod:(NSString *)method
+//                 URL:(NSString *)URL
+//          parameters:(id) parameters
+//             success:(void (^)(NSData *__nullable data,NSURLResponse * __nullable response))success
+//             failure:(void (^)(NSError *__nullable error))failure
+//{
+//    
+//    LYHTTPRequestOperationManager *manange = [[LYHTTPRequestOperationManager alloc] initWithMethod:method URL:URL parameters:parameters];
+//    [manange driveTask:success failure:failure];
+//}
+
+//不带parameters
++(void)requestWithMethod:(NSString *)method
                  URL:(NSString *)URL
+             success:(void (^)(NSData *__nullable data,NSURLResponse * __nullable response))success
+             failure:(void (^)(NSError *__nullable error))failure
+{
+    
+    LYHTTPRequestOperationManager *manange = [[LYHTTPRequestOperationManager alloc] initWithMethod:method URL:URL parameters:nil];
+    [manange driveTask:success failure:failure];
+}
+
+
+//GET不带parameters
++(void)requestGetWithURL:(NSString *)URL
+             success:(void (^)(NSData *__nullable data,NSURLResponse * __nullable response))success
+             failure:(void (^)(NSError *__nullable error))failure
+{
+    
+    LYHTTPRequestOperationManager *manange = [[LYHTTPRequestOperationManager alloc] initWithMethod:@"GET" URL:URL parameters:nil];
+    [manange driveTask:success failure:failure];
+}
+//GET带parameters
++(void)requestGetWithURL:(NSString *)URL
           parameters:(id) parameters
              success:(void (^)(NSData *__nullable data,NSURLResponse * __nullable response))success
              failure:(void (^)(NSError *__nullable error))failure
 {
-    NSString *newURL;
-    if ([method isEqual:@"GET"]) {
-        newURL = [[URL stringByAppendingString:@"?"] stringByAppendingString: [LYURLRequestSerialization LYQueryStringFromParameters:parameters]];
-        NSLog(@"%@",newURL);
-    }else{
-        newURL = URL;
-    }
     
-    NSURL *url = [NSURL URLWithString:newURL];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = method;
-    
-    if([method isEqual:@"POST"]){
-        [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        request.HTTPBody =[[LYURLRequestSerialization LYQueryStringFromParameters:parameters] dataUsingEncoding:NSUTF8StringEncoding];
-    }
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * data,NSURLResponse *response,NSError *error){
-        if (error) {
-            failure(error);
-        }else{
-            if (success) {
-                success(data,response);
-            }
-        }
-    }];
-    [task resume];
+    LYHTTPRequestOperationManager *manange = [[LYHTTPRequestOperationManager alloc] initWithMethod:@"GET" URL:URL parameters:parameters];
+    [manange driveTask:success failure:failure];
 }
 
 
 
-
-
+//POST不带parameters
++(void)requestPostWithURL:(NSString *)URL
+                 success:(void (^)(NSData *__nullable data,NSURLResponse * __nullable response))success
+                 failure:(void (^)(NSError *__nullable error))failure
+{
+    
+    LYHTTPRequestOperationManager *manange = [[LYHTTPRequestOperationManager alloc] initWithMethod:@"POST" URL:URL parameters:nil];
+    [manange driveTask:success failure:failure];
+}
+//POST带parameters
++(void)requestPostWithURL:(NSString *)URL
+              parameters:(id) parameters
+                 success:(void (^)(NSData *__nullable data,NSURLResponse * __nullable response))success
+                 failure:(void (^)(NSError *__nullable error))failure
+{
+    
+    LYHTTPRequestOperationManager *manange = [[LYHTTPRequestOperationManager alloc] initWithMethod:@"POST" URL:URL parameters:parameters];
+    [manange driveTask:success failure:failure];
+}
 
 
 
